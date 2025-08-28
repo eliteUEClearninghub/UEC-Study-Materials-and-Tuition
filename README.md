@@ -1,5 +1,5 @@
 # Elite UEC Learning Hub | UEC-Study-Materials-and-Tuition
-*UEC learning resources, notes, exercises, and interactive games. Powered by Elite UEC Learning Hub.* 
+*UEC learning resources, notes, exercises, and interactive games. Powered by Elite UEC Learning Hub.*   
 **独中学习资源，包括笔记、习题与互动小游戏。由 Elite UEC Learning Hub 提供。**
 
 *Empowering Students · Inspiring Learning*  
