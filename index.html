@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEC学习资源中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subject-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .subject-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .resources-count {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .contact-item-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #667eea;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .why-choose-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .why-choose-section h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .why-choose-section > p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .why-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-card h4 {
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .why-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }*/
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95rem;
+        } 
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            }
+
+        /* .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2563eb;
+            } */
+
+        /* .stat-label {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 0.5rem;
+            } */
+
+        .footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            text-align: center;
+            color: #999;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: rgba(102, 126, 234, 0.4);
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none; /* 去掉底线 */
+            transition: background 0.3s ease;
+            }
+        
+        .learn-more-btn:hover {
+            background-color: #1d4ed8; /* hover 效果 */
+            }
+
+.learn-more-btn:hover {
+  background-color: #1d4ed8; /* hover 效果 */
+}
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Elite UEC Learning Hub</div>
+            <nav class="nav">
+                <a href="#subjects">科目</a>
+                <a href="#resources">资源</a>
+                <a href="#notes">笔记</a>
+                <a href="#practice">练习</a>
+                <a href="#contact">联系我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>马来西亚独中生学习中心</h1>
+        <p>全面的UEC考试学习资源、笔记与练习题库</p>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索科目...">
+        </div>
+    </section>
+
+    <main class="main-content">
+        <h2 class="section-title" id="subjects">主要科目</h2>
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <div class="subject-icon">📐</div>
+                <h3>数学 Mathematics</h3>
+                <p>高级数学、统计学、微积分</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🔬</div>
+                <h3>物理 Physics</h3>
+                <p>力学、电磁学、光学</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🧪</div>
+                <h3>化学 Chemistry</h3>
+                <p>有机化学、无机化学、物理化学</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🧬</div>
+                <h3>生物 Biology</h3>
+                <p>细胞生物学、遗传学、生态学</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">📖</div>
+                <h3>华文 Chinese</h3>
+                <p>阅读理解、作文、文言文</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🔤</div>
+                <h3>英文 English</h3>
+                <p>语法、写作、阅读理解</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🌏</div>
+                <h3>地理 Geography</h3>
+                <p>自然地理、人文地理</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">📜</div>
+                <h3>历史 History</h3>
+                <p>世界历史、中国历史</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">💼</div>
+                <h3>会计 Accounting</h3>
+                <p>财务会计、成本会计</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">📊</div>
+                <h3>经济 Economics</h3>
+                <p>微观经济、宏观经济</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">💻</div>
+                <h3>电脑 Computer Science</h3>
+                <p>编程、数据结构、算法</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🎨</div>
+                <h3>美术 Art</h3>
+                <p>素描、水彩、设计</p>
+                <a href="#math.html" class="learn-more-btn">了解更多</a>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="resources">✨ 学习功能</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h4>详细笔记</h4>
+                <p>由资深老师整理的考试重点笔记</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📹</div>
+                <h4>视频教学</h4>
+                <p>清晰易懂的视频讲解</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h4>练习题库</h4>
+                <p>海量历年试题与模拟试题</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>进度追踪</h4>
+                <p>实时记录学习进度与成绩</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">🌟 为什么选择我们的平台？</h2>
+        <div class="why-choose-section">
+            <h2>Why Choose Our Platform?</h2>
+            <p>我们致力于为独中生提供最优质的学习体验</p>
+            
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <h4>专注UEC考试</h4>
+                    <p>所有内容完全针对UEC统考大纲设计，精准覆盖考试重点，让您的复习更有针对性和效率。</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">👨‍🏫</div>
+                    <h4>资深教师团队</h4>
+                    <p>由经验丰富的独中教师和UEC高分学长学姐共同打造，提供最实用的学习方法和考试技巧。</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">📚</div>
+                    <h4>海量学习资源</h4>
+                    <p>超过1500份笔记、历年试题、视频教程和模拟试卷，涵盖所有UEC科目，随时随地学习。</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">💡</div>
+                    <h4>简单易懂</h4>
+                    <p>复杂概念用简单的语言和图表说明，配合实际例子，让每个学生都能轻松理解和掌握。</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">📱</div>
+                    <h4>随时随地学习</h4>
+                    <p>支持手机、平板和电脑访问，无论在学校、家里还是路上，都能继续您的学习进度。</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">🆓</div>
+                    <h4>完全免费</h4>
+                    <p>我们相信教育应该人人平等。所有核心学习资源完全免费开放，助力每位独中生实现梦想。</p>
+                </div>
+            </div>
+
+        <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">活跃学生用户</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1,500+</div>
+                    <div class="stat-label">学习资源</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">学生满意度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">全天候学习</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>准备好开始学习了吗？</h2>
+            <p>加入我们的学习平台，获取全面的UEC考试资源</p>
+            <a href="#" class="cta-button">立即开始学习</a>
+        </div>
+
+        <h2 class="section-title" id="contact">📧 联系我们 Contact Us</h2>
+        <div class="contact-section">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>保持联系</h3>
+                    <p style="color: #666; margin-bottom: 2rem;">有任何问题或建议？欢迎随时联系我们！</p>
+                    
+                    <div class="contact-item">
+                        <span class="contact-item-icon">📧</span>
+                        <div>
+                            <strong>电邮 Email</strong><br>
+                            info@ueclearning.com
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-item-icon">📱</span>
+                        <div>
+                            <strong>电话 Phone</strong><br>
+                            +60 12-345 6789
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-item-icon">📍</span>
+                        <div>
+                            <strong>地址 Address</strong><br>
+                            Kuala Lumpur, Malaysia
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-item-icon">⏰</span>
+                        <div>
+                            <strong>服务时间 Working Hours</strong><br>
+                            周一至周五 9:00 AM - 6:00 PM
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">📘</a>
+                        <a href="#" class="social-link" title="Instagram">📷</a>
+                        <a href="#" class="social-link" title="WeChat">💬</a>
+                        <a href="#" class="social-link" title="WhatsApp">📞</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="color: #333; margin-bottom: 1rem;">发送消息 Send Message</h3>
+                    <form id="contactForm" action="https://formsubmit.co/your-email@example.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="UEC学习平台 - 新消息">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <div class="form-group">
+                            <label for="name">姓名 Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">电邮 Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">主题 Subject *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">消息 Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">发送消息 Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">🎓 UEC学习平台</div>
+                <p>专为马来西亚独中生打造的全方位学习平台，助力每位学生在UEC统考中取得优异成绩。</p>
+                <div class="footer-social">
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="WeChat">💬</a>
+                    <a href="https://wa.me/60123456789" title="WhatsApp" target="_blank">📞</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="#subjects">所有科目</a>
+                <a href="#resources">学习资源</a>
+                <a href="#notes">笔记下载</a>
+                <a href="#practice">练习题库</a>
+                <a href="#contact">联系我们</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>热门科目</h3>
+                <a href="#">数学 Mathematics</a>
+                <a href="#">物理 Physics</a>
+                <a href="#">化学 Chemistry</a>
+                <a href="#">华文 Chinese</a>
+                <a href="#">英文 English</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>联系信息</h3>
+                <p>📧 info@ueclearning.com</p>
+                <p>📱 +60 12-345 6789</p>
+                <p>📍 Kuala Lumpur, Malaysia</p>
+                <p>⏰ 周一至周五<br>9:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 UEC学习平台. All Rights Reserved. | 为独中生·创未来</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        const subjectCards = document.querySelectorAll('.subject-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            subjectCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = searchTerm === '' ? 'block' : 'none';
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Subject card click animation
+        subjectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(-5px)';
+                }, 100);
+            });
+        });
+        // Form will submit directly to your email via FormSubmit
+    </script>
+</body>
+</html>
